@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html ng-app="exModule">
+<head>
+	<title> {{userChartName}} </title>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=BenchNine' rel='stylesheet' type='text/css'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js" type="text/javascript"></script>
+	<script src="/js/main2.js" type="text/javascript"></script>
+	
+
+</head>
+<body ng-controller="mainController">
+
+<div class = "smallscreen">
+		<div class = "smallscreenwarning">
+		Please view on a full sized device. 
+		</div>
+</div>
+
+<div class = "header firstheader" style = "background-image: url('{{userImageURL}}')">
+	<div class = "headerinner">
+		<p class = "maintitle"> {{userChartName}} </p> 
+	</div>
+</div>
+	<div class = "menu">
+		<a ng-if = "!user.username" href = "/auth/login" class = "menuitem"> LOG IN</a>
+		<a ng-if = "user.username" href = "/auth/logout" class = "menuitem">LOG OUT</a>
+		<a ng-if = "user.username" ng-click = "makeYourOwn()" class = "menuitem"> MAKE YOUR OWN CHART </a>
+		<a href = "mailto:davidcarlyoung@gmail.com?Subject=Gray%20Area%20Inquiry" class = "menuitem">  CONTACT </a>
+	</div>
+<br>
+<br>
+<br>
+<br>
+
+<div class = "maintitlesub">
+	<div class = "container">
+		<br>
+		<br>
+		<div class = "row">
+
+		<div class = "title col-sm-11">
+			<div class = "maintitlesub" ng-if = "user.username"> Welcome back {{user.username}}.</div>
+			<br>
+		{{userDescription}}  
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class = "row">
+			<div class = "col-sm-1 "><br>
+			</div>
+			<div ng-repeat = "(x, title) in xTitleArray track by x" class = "col-sm-1 key top" ng-class = "{boxcallout: userHolderArray[0][x].xtitlecallout, left: $first, right: $last}" ng-mouseover = "userTitleMouseOver(xTitleArray[x])" ng-mouseleave = "userMouseLeave()"><br> {{xTitleArray[x]}}<br>
+			</div>
+		</div>
+
+		<div class = "row" ng-repeat = "(yindex, relationRow) in userHolderArray track by yindex">
+			<div ng-class = "{boxcallout: userHolderArray[yindex][0].ytitlecallout, verticalbottom: $last, verticaltop:$first }"ng-mouseover = "userTitleMouseOver(userHolderArray[yindex][0].country1)" ng-mouseleave = "userMouseLeave()"class = "col-sm-1 key vertical"> <br>{{userHolderArray[yindex][0].country1}}
+			</div>
+			<div ng-repeat = "(xindex, relation) in userHolderArray[yindex] track by xindex" ng-mouseover = "userRelationshipMouseOver(yindex, xindex)" ng-mouseleave = "userMouseLeave()" ng-click = "userClick(yindex, xindex)" style = "background-color: {{userHolderArray[yindex][xindex].color}}" ng-class = "{boxborder: userHolderArray[yindex][xindex].border}" class = "col-sm-1">
+			</div>
+		</div>
+		<br>
+		<br>
+		
+		<br>
+		<br>
+		<div class = "row">
+			<div class = "col-sm-4">
+				<span ng-bind = "userColorKeys.color1" style = "color: #33CC33"> </span>
+			</div>
+			<div	 class = "col-sm-4">
+				<span ng-bind = "userColorKeys.color2"ng-mouseover = "mouseOver('#CCFF66')" ng-mouseleave = "mouseLeave()"style = "color: #A3CC52"> </span>
+			</div>
+			<div class - "col-sm-4">
+				<span ng-bind = "userColorKeys.color3"ng-mouseover = "mouseOver('#FFFF99')" ng-mouseleave = "mouseLeave()" style = "color: #CFCF53"></span>
+			</div>
+		</div>	
+		<br>
+		<br>
+		<div class = "row">
+			<div class = "col-sm-4">
+				<span ng-bind = "userColorKeys.color4"ng-mouseover = "mouseOver('#FF3300')" ng-mouseleave = "mouseLeave()" style = "color: #FF3300"></span>
+			</div>
+			<div class = "col-sm-4">
+				<span ng-bind = "userColorKeys.color5"ng-mouseover = "mouseOver('#FF9933')" ng-mouseleave = "mouseLeave()"style = "color: #FF9933"></span>
+			</div>
+			<div class - "col-sm-4">
+			<span ng-bind = "userColorKeys.color6"ng-mouseover = "mouseOver('#FFCC66')" ng-mouseleave = "mouseLeave()" style = "color: #FFCC66"> </span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show = "storyshow" class = "newsdisplayouter">
+	<div class = "newsdisplayinner">
+		<!-- UN Reports and Meeting Minutes Pertaining to  -->
+		Guardian News pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}:
+		<br>
+		<button class="btn btn-default btn-xs" ng-click = "closeButton()" style = "float:right;"> x </button>
+		
+		<div class = "story" ng-repeat = "story in guardianDisplayArray">
+			<a class = "link" href = "{{story.webUrl}}">{{story.webTitle}}</a>
+		</div>
+		<br>	
+		UN Reports pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}:
+		<div ng-repeat = "story in displayArray" ng-click = "loadStory($index)" class = "story" >
+			{{story.fields.title}}
+			<br>
+		</div>
+		
+	</div>
+</div>
+
+
+<div ng-show = "bodyshow" class = "newsdisplayouter">
+	<div class = "newsdisplayinner">
+		<div class = "story">
+			<button class="btn btn-default btn-xs" ng-click = "closeButton()" style = "float:right;"> x </button>
+		<p ng-bind-html="to_trusted(storystring)">
+		</p>
+		<button class = "btn btn-default btn-xs" ng-click = "storyBack()"> Back </button><button class="btn btn-default btn-xs" ng-click = "closeButton()"> Close</button>
+		<br>
+		</div>
+		<div class = "story">
+		</div>
+	</div>
+</div>
+
+	<br>
+	<br>
+<div class = "menu">	
+		<a ng-if = "!user.username" href = "/auth/login" class = "menuitem"> LOG IN</a>
+		<a ng-if = "user.username" href = "/auth/logout" class = "menuitem">LOG OUT</a>
+		<a href = "mailto:davidcarlyoung@gmail.com?Subject=Gray%20Area%20Inquiry" class = "menuitem">  CONTACT </a>
+</div>
+
+<div class = "header firstheader">
+
+</div>
+<br>
+</body>
+</html>

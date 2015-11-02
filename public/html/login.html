@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gray Areas Log In</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=BenchNine' rel='stylesheet' type='text/css'>
+</head>
+<body class = "header">
+
+
+<div class = "header firstheader">
+  <div class = "headerinner">
+    <p class = "maintitle"> Gray Area. </p> 
+    <p class = "maintitlesub">Scroll Down to Log In</p>
+  </div>
+</div>
+
+<div class = "login">
+  <h1>Existing Users</h1>
+  <form action="/auth/login" method="post">
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <input type="submit"/>
+  </form>
+  <br>
+  <h1>Register</h1>
+  <form action="/auth/signup" method="post">
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="email" name="email" placeholder="Email"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <input type="submit"/>
+  </form>
+</div>
+
+</body>
+</html>
