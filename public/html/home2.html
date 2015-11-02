@@ -89,7 +89,7 @@
 		</div>
 		<div ng-show="(progressCounter == 6)" class = "row">
 			<div class = "col-sm-8">
-				Step 7: Check out your graphic at localhost:3000/profile/{{user.username}}/{{userChartName}}.  
+				Step 7: Check out your graphic at http://grayareas.io/profile/{{user.username}}/{{userChartName}}.  
 			</div>
 
 		</div>
@@ -205,7 +205,7 @@
 		<div class = "title col-sm-11">
 			<div class = "maintitlesub" ng-if = "user.username"> Welcome back {{user.username}}.</div>
 			<br>
-Below is a graphical display of current relations between the primary actors in the conflict in Iraq and Syria.  One of the defining characteristics of the conflict is the lack of aligned interests between the various actors. Click individual tiles to explore Guardian News Stories and UN reports pertaining to that specific relationship.  Hover your mouse over individual countries to highlight that country's relationships with other actors in the conflict.  Hover your mouse over the classification of relationships in the bottom right to see all bilateral relationships falling into that category.  
+Below is a graphical display of current relations between the primary actors in the conflict in Iraq and Syria.  One of the defining characteristics of the conflict is the lack of aligned interests between the various actors. Click individual tiles to explore Guardian News Stories and UN reports pertaining to that specific relationship.  Hover your mouse over individual countries to highlight that country's relationships with other actors in the conflict.  Hover your mouse over the classification of relationships in the bottom right to see all bilateral relationships falling into that category. <div class = "maintitlesub" ng-if = "!user.username"> Log in to make your own chart!</div>
 		</div>
 	</div>
 	<div class = "row">
