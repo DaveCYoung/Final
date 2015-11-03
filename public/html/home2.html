@@ -520,7 +520,8 @@ Below is a graphical display of current relations between the primary actors in 
 <div ng-show = "storyshow" class = "newsdisplayouter">
 	<div class = "newsdisplayinner">
 		<!-- UN Reports and Meeting Minutes Pertaining to  -->
-		Guardian News pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}:
+		<span ng-show = "(guardianDisplayArray)"> Guardian News pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}: </span>
+		<span ng-show = "(!guardianDisplayArray)"> No Guardian stories meeting specified search criteria. </span>
 		<br>
 		<button class="btn btn-default btn-xs" ng-click = "closeButton()" style = "float:right;"> x </button>
 		
@@ -528,7 +529,8 @@ Below is a graphical display of current relations between the primary actors in 
 			<a class = "link" href = "{{story.webUrl}}">{{story.webTitle}}</a>
 		</div>
 		<br>	
-		UN Reports pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}:
+		<span ng-show = "(displayArray)"> UN Reports pertaining to {{currentCountries[0]}} and {{currentCountries[1]}}: </span>
+		<span ng-show = "(!displayArray)"> No UN reports meeting specified search criteria. </span>
 		<div ng-repeat = "story in displayArray" ng-click = "loadStory($index)" class = "story" >
 			{{story.fields.title}}
 			<br>
