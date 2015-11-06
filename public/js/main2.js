@@ -35,7 +35,7 @@ $scope.displayArray=[];
 $scope.guardianDisplayArray=[];
 $scope.relationshipValues = [
 .2, .2, .1, .9, .9, .1, .2, .8, 1, .3, //Saudi
-1, 1, .2, .8, .8, .3, .9, .2, .2, //Russia
+1, 1, .1, .8, .8, .3, .9, .2, .2, //Russia
 1, .2, .1, 1, .8, .1, .7, 1,  //US
 .1, .2, .1, .1, .1, .1, .2,  // Turkey
 1, 1, .1, 1, .7, .1,  // Iran
